@@ -30,47 +30,32 @@ public class JwtFilter extends OncePerRequestFilter {
             FilterChain filterChain
     ) throws ServletException, IOException {
 
-        // 1. Pega o header Authorization
-        final String authHeader = request.getHeader("Authorization");
+        try {
+            final String authHeader = request.getHeader("Authorization");
 
-        // 2. Se não tem token, passa pra frente
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
-
-        // 3. Extrai o token (remove "Bearer ")
-        final String token = authHeader.substring(7);
-
-        // 4. Extrai o email do token
-        final String email = jwtService.extractEmail(token);
-
-        // 5. Se tem email e ainda não está autenticado
-        if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-
-            // 6. Carrega o usuário do banco
-            UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-
-            // 7. Valida o token
-            if (jwtService.isTokenValid(token, userDetails)) {
-
-                // 8. Cria autenticação e seta no contexto
-                UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(
-                                userDetails,
-                                null,
-                                userDetails.getAuthorities()
-                        );
-
-                authToken.setDetails(
-                        new WebAuthenticationDetailsSource().buildDetails(request)
-                );
-
-                SecurityContextHolder.getContext().setAuthentication(authToken);
+            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+                filterChain.doFilter(request, response);
+                return;
             }
+
+            final String token = authHeader.substring(7);
+            final String email = jwtService.extractEmail(token);
+
+            if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+                if (jwtService.isTokenValid(token, userDetails)) {
+                    UsernamePasswordAuthenticationToken authToken =
+                            new UsernamePasswordAuthenticationToken(
+                                    userDetails, null, userDetails.getAuthorities()
+                            );
+                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
+                }
+            }
+        } catch (Exception e) {
+            SecurityContextHolder.clearContext();
         }
 
-        // 9. Continua o fluxo
         filterChain.doFilter(request, response);
     }
 }
