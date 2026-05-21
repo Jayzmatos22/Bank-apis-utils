@@ -13,4 +13,8 @@ spring:
   cache:
     type: caffeine
     caffeine:
-      spec: expireAfterWrite=1h
+      spec: maximumSize=500,expireAfterWrite=30m
+
+  mvc:
+    async:
+      request-timeout: 15000

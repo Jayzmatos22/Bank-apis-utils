@@ -16,4 +16,16 @@ spring:
       enabled: true
 
   cache:
-    type: none  # cache desabilitado em dev
+    type: simple
+
+  mvc:
+    async:
+      request-timeout: 15000
+
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    disable-swagger-default-url: true
