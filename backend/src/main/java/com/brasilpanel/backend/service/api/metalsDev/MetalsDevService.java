@@ -1,4 +1,4 @@
-package com.brasilpanel.backend.service.metalsDev;
+package com.brasilpanel.backend.service.api.metalsDev;
 
 
 import com.brasilpanel.backend.dto.api.metalsDev.MetalsDataDTO;

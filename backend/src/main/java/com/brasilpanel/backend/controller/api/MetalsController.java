@@ -1,7 +1,7 @@
 package com.brasilpanel.backend.controller.api;
 
 import com.brasilpanel.backend.dto.api.metalsDev.MetalsDataDTO;
-import com.brasilpanel.backend.service.metalsDev.MetalsDevService;
+import com.brasilpanel.backend.service.api.metalsDev.MetalsDevService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
