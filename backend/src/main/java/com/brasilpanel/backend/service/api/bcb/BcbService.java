@@ -59,6 +59,7 @@ public class BcbService implements BcbImplementations{
     }
 
 
+    @Cacheable("bcb-ipca")
     @Override
     public IpcaDataDTO getIpca () {
         try {
@@ -98,6 +99,7 @@ public class BcbService implements BcbImplementations{
 
 
     // ptax
+    @Cacheable("bcb-ptax")
     public DollarPtaxDTO getDollarPtax() {
         try {
             List<DollarPtaxDTO> data = restClient.get()
@@ -120,6 +122,7 @@ public class BcbService implements BcbImplementations{
 
 
 
+    @Cacheable("bcb-cdi")
     @Override
     public CdiDataDTO getCdiRate() {
         try {
@@ -151,6 +154,7 @@ public class BcbService implements BcbImplementations{
 
 
     // Últimos 12 meses a partir da data atual.
+    @Cacheable("selic-history")
     @Override
     public List<SelicHistoryDTO> getSelicHistory () {
         try {

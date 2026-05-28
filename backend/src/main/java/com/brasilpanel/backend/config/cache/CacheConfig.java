@@ -42,11 +42,22 @@ public class CacheConfig {
                 // ── Histórico Frankfurter (dados passados nunca mudam) ───────────
                 build("frank-furter-history",    24,  TimeUnit.HOURS,   50),
 
+                // ── BCB — Banco Central ──────────────────────────────────────────
+                // Selic: reuniões COPOM a cada ~45 dias, mas valor diário pode variar
+                build("selic",                   60,  TimeUnit.MINUTES, 10),
+                build("selic-history",           24,  TimeUnit.HOURS,   10),
+
+                // IPCA: divulgado mensalmente pelo IBGE via BCB
+                build("bcb-ipca",                60,  TimeUnit.MINUTES, 10),
+
+                // PTAX e CDI: atualizados diariamente em dias úteis
+                build("bcb-ptax",                60,  TimeUnit.MINUTES, 10),
+                build("bcb-cdi",                 60,  TimeUnit.MINUTES, 10),
+
                 // ── Cotações diárias ─────────────────────────────────────────────
                 build("frank-furter",            60,  TimeUnit.MINUTES, 10),
                 build("frank-furter-last-30-days", 60, TimeUnit.MINUTES, 10),
                 build("metals",                  60,  TimeUnit.MINUTES, 10),
-                build("selic",                   60,  TimeUnit.MINUTES, 10),
 
                 // ── Cotações em tempo real ───────────────────────────────────────
                 // Ações: AlphaVantage (limite diário de requests — 15 min equilibra
