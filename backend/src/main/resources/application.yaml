@@ -1,27 +1,21 @@
 spring:
-
   profiles:
     active: dev
-
-  datasource:
-    url: jdbc:h2:mem:brasilpanel
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
-
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-    show-sql: true
-    open-in-view: false
-
-  h2:
-    console:
-      enabled: true
 
   security:
     filter:
       order: 10
 
+  mvc:
+    async:
+      request-timeout: 15000
+
 server:
   port: 8080
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    disable-swagger-default-url: true

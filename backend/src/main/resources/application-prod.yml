@@ -13,8 +13,10 @@ spring:
   cache:
     type: caffeine
     caffeine:
-      spec: maximumSize=500,expireAfterWrite=30m
+      spec: maximumSize=50,expireAfterWrite=60m
 
-  mvc:
-    async:
-      request-timeout: 15000
+alpha-vantage:
+  keys: ${ALPHA_KEYS}
+
+metals:
+  api-key: ${METALS_KEY}

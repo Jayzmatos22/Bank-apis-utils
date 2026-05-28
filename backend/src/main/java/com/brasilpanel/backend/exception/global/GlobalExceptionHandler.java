@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -146,6 +150,38 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MinimumWageException.class)
     public ResponseEntity<String> handleMinimumWage(MinimumWageException ex) {
+        return ResponseEntity.status(ex.getStatus()).body(ex.getMessage());
+    }
+
+
+
+    // Limite
+    @ExceptionHandler(AlphaVantageException.class)
+    public ResponseEntity<Map<String, Object>> handleAlphaVantage(
+            AlphaVantageException ex
+    ) {
+
+        Map<String, Object> body = new HashMap<>();
+
+        body.put("status", ex.getStatus());
+        body.put("message", ex.getMessage());
+        body.put("timestamp", LocalDateTime.now());
+
+        return ResponseEntity
+                .status(ex.getStatus())
+                .body(body);
+    }
+
+
+    // Api metalsdev
+    @ExceptionHandler(MetalsException.class)
+    public ResponseEntity<String> handleMetals(MetalsException ex) {
+        return ResponseEntity.status(ex.getStatus()).body(ex.getMessage());
+    }
+
+
+    @ExceptionHandler(IpeaException.class)
+    public ResponseEntity<String> handleIpea(IpeaException ex) {
         return ResponseEntity.status(ex.getStatus()).body(ex.getMessage());
     }
 
