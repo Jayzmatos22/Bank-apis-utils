@@ -1,8 +1,8 @@
 package com.brasilpanel.backend.dto.api.alphaVantage;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 
 // Map entregue pelo AlphaVantage
 public record GlobalQuoteWrapper(
-        @JsonProperty("Global Quote") StockQuoteDTO globalQuote
+        @JsonAlias("Global Quote") StockQuoteDTO globalQuote
 ) {}

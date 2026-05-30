@@ -1,14 +1,14 @@
 package com.brasilpanel.backend.dto.api.coinGecko;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 
 public record CryptoCoinGeckoMarketDTO(
         // 100 objetos na requisição
         String id,
         String symbol,
         String name,
-        @JsonProperty("current_price") Double currentPrice,
-        @JsonProperty("market_cap") Long marketCap,
-        @JsonProperty("price_change_percentage_24h") Double priceChange24h,
-        @JsonProperty("image") String imageUrl
+        @JsonAlias("current_price") Double currentPrice,
+        @JsonAlias("market_cap") Long marketCap,
+        @JsonAlias("price_change_percentage_24h") Double priceChange24h,
+        @JsonAlias("image") String imageUrl
 ) {}
