@@ -9,6 +9,16 @@ import RegisterPage from "./pages/auth/RegisterPage";
 import LoginPage from "./pages/auth/LoginPage";
 import AddressPage from "./pages/onboarding/AddressPage";
 import BankPage from "./pages/onboarding/BankPage";
+import EconomiaPage from "./pages/dashboard/economia/EconomiaPage";
+import SalarioPage from "./pages/dashboard/economia/SalarioPage";
+import PibPage from "./pages/dashboard/economia/PibPage";
+import AcoesPage from "./pages/dashboard/mercado/AcoesPage";
+import MetaisPage from "./pages/dashboard/mercado/MetaisPage";
+import CambioPage from "./pages/dashboard/moedas/CambioPage";
+import CriptoPage from "./pages/dashboard/moedas/CriptoPage";
+import IbgePage from "./pages/dashboard/brasil/IbgePage";
+import IpeaPage from "./pages/dashboard/brasil/IpeaPage";
+import BancosPage from "./pages/dashboard/brasil/BancosPage";
 
 // bg-app
 import './App.css'
@@ -40,6 +50,24 @@ function AppLayout() {
           <Route path="/cotacao-criptomoedas" element={<CriptosInterface />} />
           <Route path="/cotacao-moedas"    element={<ExchangeInterface />} />
           <Route path="/dashboard"         element={<Dashboard />} />
+
+          {/* Dashboard — economia */}
+          <Route path="/dashboard/economia"        element={<EconomiaPage />} />
+          <Route path="/dashboard/economia/salario" element={<SalarioPage />} />
+          <Route path="/dashboard/economia/pib"     element={<PibPage />} />
+
+          {/* Dashboard — mercado */}
+          <Route path="/dashboard/mercado/acoes"   element={<AcoesPage />} />
+          <Route path="/dashboard/mercado/metais"  element={<MetaisPage />} />
+
+          {/* Dashboard — moedas */}
+          <Route path="/dashboard/moedas/cambio"   element={<CambioPage />} />
+          <Route path="/dashboard/moedas/cripto"   element={<CriptoPage />} />
+
+          {/* Dashboard — brasil */}
+          <Route path="/dashboard/brasil/ibge"     element={<IbgePage />} />
+          <Route path="/dashboard/brasil/ipea"     element={<IpeaPage />} />
+          <Route path="/dashboard/brasil/bancos"   element={<BancosPage />} />
         </Routes>
       </div>
     </div>
